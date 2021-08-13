@@ -9,9 +9,9 @@ public class HotelReservationMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HotelReservation hotelReservation = new HotelReservation();
-        hotelReservation.addHotel("LakeWood", 110, 90, 3);
-        hotelReservation.addHotel("BridgeWood", 150, 50, 4);
-        hotelReservation.addHotel("RidgeWood", 220, 150, 5);
+        hotelReservation.addHotel("LakeWood", 110, 90, 3, 80, 80);
+        hotelReservation.addHotel("BridgeWood", 150, 50, 4, 110, 50);
+        hotelReservation.addHotel("RidgeWood", 220, 150, 5, 100, 40);
 
         //list out hotel Details
         hotelReservation.getHotelDetails();

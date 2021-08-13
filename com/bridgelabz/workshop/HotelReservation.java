@@ -5,6 +5,27 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 class Hotel{
+    //hotel parameters
+    private String hotelName;
+    private int hotelPriceWeekDays;
+    private int hotelPriceWeekEnds;
+    private int hotelRating;
+    private int hotelRewardWeekDays;
+    private int hotelRewardWeekEnds;
+
+    @Override
+    public String toString() {
+        return "\n"+"Hotel{" +
+                "hotelName='" + hotelName + '\'' +
+                ", hotelPriceWeekDays=" + hotelPriceWeekDays +
+                ", hotelPriceWeekEnds=" + hotelPriceWeekEnds +
+                ", hotelRating=" + hotelRating +
+                ", hotelRewardWeekDays=" + hotelRewardWeekDays +
+                ", hotelRewardWeekEnds=" + hotelRewardWeekEnds +
+                '}';
+    }
+
+    //gets and pus
     public String getHotelName() {
         return hotelName;
     }
@@ -29,27 +50,32 @@ class Hotel{
     public void setHotelPriceWeekEnds(int hotelPriceWeekEnds) {
         this.hotelPriceWeekEnds = hotelPriceWeekEnds;
     }
-    @Override
-    public String toString() {
-        return "Hotel{" +
-                "hotelName='" + hotelName + '\'' +
-                ",hotelPriceWeekDays=" + hotelPriceWeekDays +
-                ",hotelPriceWeekEnds=" + hotelPriceWeekEnds +
-                ", hotelRating= "+ hotelRating+
-                '}';
-    }
 
-    public Hotel(String hotelName, int hotelPriceWeekDays, int hotelPriceWeekEnds, int hotelRating) {
+
+    public Hotel(String hotelName, int hotelPriceWeekDays, int hotelPriceWeekEnds, int hotelRating, int hotelRewardWeekDays, int hotelRewardWeekEnds) {
         this.hotelName = hotelName;
         this.hotelPriceWeekDays = hotelPriceWeekDays;
         this.hotelPriceWeekEnds = hotelPriceWeekEnds;
         this.hotelRating = hotelRating;
+        this.hotelRewardWeekDays = hotelRewardWeekDays;
+        this.hotelRewardWeekEnds = hotelRewardWeekEnds;
     }
 
-    private String hotelName;
-    private int hotelPriceWeekDays;
-    private int hotelPriceWeekEnds;
-    private int hotelRating;
+    public int getHotelRewardWeekDays() {
+        return hotelRewardWeekDays;
+    }
+
+    public void setHotelRewardWeekDays(int hotelRewardWeekDays) {
+        this.hotelRewardWeekDays = hotelRewardWeekDays;
+    }
+
+    public int getHotelRewardWeekEnds() {
+        return hotelRewardWeekEnds;
+    }
+
+    public void setHotelRewardWeekEnds(int hotelRewardWeekEnds) {
+        this.hotelRewardWeekEnds = hotelRewardWeekEnds;
+    }
 
     public int getHotelRating() {
         return hotelRating;
@@ -66,8 +92,10 @@ class HotelReservation extends Hotel {
     public ArrayList<Hotel> hotelDetails = new ArrayList<Hotel>();
 
     //ooking hotels and list of hotels
-    public void addHotel(String hotelName, int hotelPriceWeekDays, int hotelPriceWeekEnds, int hotelRating) {
-        Hotel adder = new Hotel(hotelName, hotelPriceWeekDays, hotelPriceWeekEnds, hotelRating);
+    public void addHotel(String hotelName, int hotelPriceWeekDays, int hotelPriceWeekEnds, int hotelRating,
+                         int hotelRewardWeekDays, int hotelRewardWeekEnds) {
+        Hotel adder = new Hotel(hotelName, hotelPriceWeekDays, hotelPriceWeekEnds, hotelRating,
+                hotelRewardWeekDays, hotelRewardWeekEnds);
         hotelDetails.add(adder);
     }
     public void getHotelDetails(){
@@ -132,6 +160,7 @@ class HotelReservation extends Hotel {
         }
 
     }
+
 
 
 
