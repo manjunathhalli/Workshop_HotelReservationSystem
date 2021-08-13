@@ -39,7 +39,7 @@ public class HotelReservationMain {
                 case 1:
                     boolean cont1 = true;
                     while (cont1){
-                        System.out.println("1:Cheapest best rated hotel 2:cheapest best rated hotel Hotel 0:Exit");
+                        System.out.println("1:Cheapest best rated hotel 2:Cheapest best rated hotel Hotel 3:Cheapest best rated hotel Hotel 0:Exit");
                         int opt1 = sc.nextInt();
                         switch (opt1){
                             case 1:
@@ -49,6 +49,10 @@ public class HotelReservationMain {
                             case 2:
                                 //this class will do booking hotels and list of hotels and finding weekdays count and finding best rated and best coast hotel
                                 hotelReservation.getMinPriceBestRatedHotel(weekEndsCount, weekDaysCount, 2);
+                                break;
+                            case 3:
+                                //finding best rated and best coast hotel
+                                hotelReservation.getMinPriceHotel(weekEndsCount, weekDaysCount, opt);
                                 break;
                             case 0:
                                 cont1 = false;
