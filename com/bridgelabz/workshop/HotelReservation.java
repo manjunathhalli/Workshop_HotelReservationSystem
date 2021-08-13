@@ -117,7 +117,57 @@ class HotelReservation extends Hotel {
         System.out.println("WeekDay days count is :"+(temp-weekEnds));
         return weekEnds;
     }
-    //finding best rate hotel
+
+    //finding best rate and cheap hotel as per requirement with have two rates in reward and normal rates
+    public void getMinPriceBestRatedHotel(int weekEndsCount, int weekDaysCount, int opt){
+        Hotel minWeekDays =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekDays)).orElseThrow();
+        Hotel minWeekEnd =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekEnds)).orElseThrow();
+
+        Hotel minWeekDaysReward =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelRewardWeekDays)).orElseThrow();
+        Hotel minWeekEndReward =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelRewardWeekEnds)).orElseThrow();
+
+        long totalRate1=0;
+        long totalRate2=0;
+
+        long totalRate3=0;
+        long totalRate4=0;
+
+
+        totalRate1 =  (weekEndsCount) * (minWeekDays.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekDays.getHotelPriceWeekDays());
+        totalRate2 = (weekEndsCount) * (minWeekEnd.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekEnd.getHotelPriceWeekDays());
+
+        totalRate3 =  (weekEndsCount) * (minWeekDaysReward.getHotelRewardWeekEnds()) + (weekDaysCount) * (minWeekDays.getHotelRewardWeekDays());
+        totalRate4 = (weekEndsCount) * (minWeekEndReward.getHotelRewardWeekEnds()) + (weekDaysCount) * (minWeekEnd.getHotelRewardWeekDays());
+
+        switch (opt){
+            case 1:
+                if (totalRate1<totalRate2 && totalRate1<totalRate3 && totalRate1<totalRate4){
+                    System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
+                    System.out.println(minWeekDays);
+                    System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
+                    break;
+                }else if (totalRate2<totalRate3 && totalRate2<totalRate4 && totalRate2<totalRate1) {
+                    System.out.println("Best rate Hotel is : " + minWeekEnd.getHotelName());
+                    System.out.println(minWeekEnd);
+                    System.out.println(minWeekEnd.getHotelName() + " Total Rate is : " + totalRate2);
+                    break;
+                }else if (totalRate3<totalRate1 && totalRate3<totalRate2 && totalRate3<totalRate4){
+                    System.out.println("Best rate Hotel is : " + minWeekDaysReward.getHotelName());
+                    System.out.println(minWeekDaysReward);
+                    System.out.println(minWeekDaysReward.getHotelName() + " Total Rate is : " + totalRate3);
+                    break;
+                }else if(totalRate4<totalRate1 && totalRate4<totalRate2 && totalRate4<totalRate3){
+                    System.out.println("Best rate Hotel is : " + minWeekEndReward.getHotelName());
+                    System.out.println(minWeekEndReward);
+                    System.out.println(minWeekEndReward.getHotelName() + " Total Rate is : " + totalRate4);
+                    break;
+                }
+        }
+
+    }
+
+
+    //finding best rate and cheap hotel as per requirement
     public void getMinPriceHotel(int weekEndsCount, int weekDaysCount, int opt){
         Hotel minWeekDays =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekDays)).orElseThrow();
         Hotel minWeekEnd =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekEnds)).orElseThrow();
@@ -160,8 +210,5 @@ class HotelReservation extends Hotel {
         }
 
     }
-
-
-
 
 }
