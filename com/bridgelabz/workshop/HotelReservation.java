@@ -59,8 +59,6 @@ class Hotel{
         this.hotelRating = hotelRating;
     }
 
-
-
 }
 
 //this class will do booking hotels and list of hotels and finding weekdays count and finding best rate hotel
@@ -100,7 +98,7 @@ class HotelReservation extends Hotel {
         totalRate1 =  (weekEndsCount) * (minWeekDays.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekDays.getHotelPriceWeekDays());
         totalRate2 = (weekEndsCount) * (minWeekEnd.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekEnd.getHotelPriceWeekDays());
 
-        if (totalRate1<totalRate2){
+        if (totalRate1<totalRate2 && minWeekDays.getHotelRating() > minWeekEnd.getHotelRating()){
             System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
             System.out.println(minWeekDays);
             System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
@@ -110,5 +108,6 @@ class HotelReservation extends Hotel {
             System.out.println(minWeekEnd.getHotelName()+" Total Rate is : "+totalRate2);
         }
     }
+
 
 }
