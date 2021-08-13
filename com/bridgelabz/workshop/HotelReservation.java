@@ -162,6 +162,35 @@ class HotelReservation extends Hotel {
                     System.out.println(minWeekEndReward.getHotelName() + " Total Rate is : " + totalRate4);
                     break;
                 }
+            case 2:
+                if (totalRate1<totalRate2 && totalRate1<totalRate3 && totalRate1<totalRate4 && minWeekDays.getHotelRating() > minWeekDaysReward.getHotelRating() ) {
+                    System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
+                    System.out.println(minWeekDays);
+                    System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
+                    break;
+                }else if (totalRate2<totalRate3 && totalRate2<totalRate4 && totalRate2<totalRate1 && minWeekEnd.getHotelRating() > minWeekEndReward.getHotelRating()) {
+                    System.out.println("Best rate Hotel is : " + minWeekEnd.getHotelName());
+                    System.out.println(minWeekEnd);
+                    System.out.println(minWeekEnd.getHotelName() + " Total Rate is : " + totalRate2);
+                    break;
+                }else if (totalRate3<totalRate1 && totalRate3<totalRate2 && totalRate3<totalRate4 && minWeekDaysReward.getHotelRating() > minWeekDays.getHotelRating()){
+                    System.out.println("Best rate Hotel is : " + minWeekDaysReward.getHotelName());
+                    System.out.println(minWeekDaysReward);
+                    System.out.println(minWeekDaysReward.getHotelName() + " Total Rate is : " + totalRate3);
+                    break;
+                }else if(totalRate4<totalRate1 && totalRate4<totalRate2 && totalRate4<totalRate3 && minWeekEndReward.getHotelRating() > minWeekEnd.getHotelRating()){
+                    System.out.println("Best rate Hotel is : " + minWeekEndReward.getHotelName());
+                    System.out.println(minWeekEndReward);
+                    System.out.println(minWeekEndReward.getHotelName() + " Total Rate is : " + totalRate4);
+                    break;
+                }
+            case 3:
+                Hotel maxRated =  hotelDetails.stream().max(Comparator.comparing(Hotel::getHotelRating)).orElseThrow();
+                int totalRatehotel =  (weekEndsCount) * (maxRated.getHotelPriceWeekEnds()) + (weekDaysCount) * (maxRated.getHotelPriceWeekDays());
+                System.out.println("Best Rate Hotel is : "+maxRated.getHotelName());
+                System.out.println(maxRated);
+                System.out.println(maxRated.getHotelName()+" Total Rate is : "+totalRatehotel);
+                break;
         }
 
     }
@@ -210,5 +239,4 @@ class HotelReservation extends Hotel {
         }
 
     }
-
 }
