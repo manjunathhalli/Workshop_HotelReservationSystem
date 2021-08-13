@@ -36,7 +36,7 @@ class Hotel{
                 ",hotelPriceWeekDays=" + hotelPriceWeekDays +
                 ",hotelPriceWeekEnds=" + hotelPriceWeekEnds +
                 ", hotelRating= "+ hotelRating+
-                '}'+"\n";
+                '}';
     }
 
     public Hotel(String hotelName, int hotelPriceWeekDays, int hotelPriceWeekEnds, int hotelRating) {
@@ -90,7 +90,7 @@ class HotelReservation extends Hotel {
         return weekEnds;
     }
     //finding best rate hotel
-    public void getMinPriceHotel(int weekEndsCount, int weekDaysCount){
+    public void getMinPriceHotel(int weekEndsCount, int weekDaysCount, int opt){
         Hotel minWeekDays =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekDays)).orElseThrow();
         Hotel minWeekEnd =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPriceWeekEnds)).orElseThrow();
         long totalRate1=0;
@@ -98,16 +98,41 @@ class HotelReservation extends Hotel {
         totalRate1 =  (weekEndsCount) * (minWeekDays.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekDays.getHotelPriceWeekDays());
         totalRate2 = (weekEndsCount) * (minWeekEnd.getHotelPriceWeekEnds()) + (weekDaysCount) * (minWeekEnd.getHotelPriceWeekDays());
 
-        if (totalRate1<totalRate2 && minWeekDays.getHotelRating() > minWeekEnd.getHotelRating()){
-            System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
-            System.out.println(minWeekDays);
-            System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
-        } else{
-            System.out.println("Best Price rate Hotel is : "+minWeekEnd.getHotelName());
-            System.out.println(minWeekEnd);
-            System.out.println(minWeekEnd.getHotelName()+" Total Rate is : "+totalRate2);
+        switch (opt){
+            case 1:
+                if (totalRate1<totalRate2){
+                    System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
+                    System.out.println(minWeekDays);
+                    System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
+                } else{
+                    System.out.println("Best Price rate Hotel is : "+minWeekEnd.getHotelName());
+                    System.out.println(minWeekEnd);
+                    System.out.println(minWeekEnd.getHotelName()+" Total Rate is : "+totalRate2);
+                }
+                break;
+            case 2:
+                if (totalRate1<totalRate2 && minWeekDays.getHotelRating() > minWeekEnd.getHotelRating()){
+                    System.out.println("Best rate Hotel is : "+minWeekDays.getHotelName());
+                    System.out.println(minWeekDays);
+                    System.out.println(minWeekDays.getHotelName()+" Total Rate is : "+totalRate1);
+                } else{
+                    System.out.println("Best Price rate Hotel is : "+minWeekEnd.getHotelName());
+                    System.out.println(minWeekEnd);
+                    System.out.println(minWeekEnd.getHotelName()+" Total Rate is : "+totalRate2);
+                }
+                break;
+            case 3:
+                Hotel maxRated =  hotelDetails.stream().max(Comparator.comparing(Hotel::getHotelRating)).orElseThrow();
+                int totalRatehotel =  (weekEndsCount) * (maxRated.getHotelPriceWeekEnds()) + (weekDaysCount) * (maxRated.getHotelPriceWeekDays());
+                System.out.println("Best Rate Hotel is : "+maxRated.getHotelName());
+                System.out.println(maxRated);
+                System.out.println(maxRated.getHotelName()+" Total Rate is : "+totalRatehotel);
+                break;
+
         }
+
     }
+
 
 
 }

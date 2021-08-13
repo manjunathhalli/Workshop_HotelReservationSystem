@@ -3,9 +3,11 @@ import java.time.LocalDate;
 
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 
 public class HotelReservationMain {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         HotelReservation hotelReservation = new HotelReservation();
         hotelReservation.addHotel("LakeWood", 110, 90, 3);
         hotelReservation.addHotel("BridgeWood", 150, 50, 4);
@@ -26,8 +28,26 @@ public class HotelReservationMain {
         int weekEndsCount = hotelReservation.getWeekDaysCount(dateStart, noOfDays);
         int weekDaysCount = noOfDays - weekEndsCount;
 
-        //find getMinPriceHotel
-        hotelReservation.getMinPriceHotel(weekEndsCount, weekDaysCount);
+        boolean cont = true;
+        while (cont){
+            System.out.println("1:Best Minimum price range Hotel 2:Best Minimum price range with average rated Hotel 3:Best Rated Hotel Or 0:toExit");
+            int opt = sc.nextInt();
+            switch (opt){
+                case 1:
+                    hotelReservation.getMinPriceHotel(weekEndsCount, weekDaysCount, opt);
+                    break;
+                case 2:
+                    hotelReservation.getMinPriceHotel(weekEndsCount, weekDaysCount, opt);
+                    break;
+                case 3:
+                    hotelReservation.getMinPriceHotel(weekEndsCount, weekDaysCount, opt);
+                    break;
+                case 0:
+                    cont=false;
+                    break;
+            }
+
+        }
 
     }
 }
