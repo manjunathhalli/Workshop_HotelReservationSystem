@@ -32,7 +32,9 @@ class Hotel{
         return "Hotel Name: "+hotelName +"Hotel Price: "+hotelPrice;
     }
 }
+
 public class HotelReservation {
+
     public ArrayList<Hotel> hotelDetails;
 
     public HotelReservation() {
@@ -42,6 +44,11 @@ public class HotelReservation {
     public void addHotel(String hotelName, Integer hotelPrice) {
         Hotel adder = new Hotel(hotelName, hotelPrice);
         hotelDetails.add(adder);
+    }
+
+    public void getMinPriceHotel(){
+        Hotel min =  hotelDetails.stream().min(Comparator.comparing(Hotel::getHotelPrice)).orElseThrow();
+        System.out.println(min);
     }
 
     public void getHotelDetails() {

@@ -7,6 +7,6 @@ public class HotelReservationMain {
 
         HotelReservation hotelReservation = new HotelReservation();
         hotelReservation.viewHotels();
-
+        hotelReservation.getMinPriceHotel();
     }
 }
